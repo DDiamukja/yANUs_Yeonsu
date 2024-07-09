@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>커뮤니티 사이트</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            background-color: #fff;
+            padding: 20px;
+            margin: auto;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+        }
+        .tab {
+            overflow: hidden;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+        .tab button {
+            background-color: inherit;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            transition: background-color 0.3s ease;
+        }
+        .tab button:hover {
+            background-color: #ddd;
+        }
+        .tab button.active {
+            background-color: #007bff;
+            color: #fff;
+        }
+        .content {
+            display: none;
+        }
+        .content.active {
+            display: block;
+        }
+        .post, .gallery, .question {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .post h3, .gallery .caption, .question h3 {
+            margin-top: 0;
+        }
+        .post p, .gallery .caption, .question p {
+            margin-bottom: 10px;
+        }
+        .post .meta, .question .meta {
+            font-size: 12px;
+            color: #666;
+        }
+        .image {
+            position: relative;
+            overflow: hidden;
+            border-radius: 5px;
+        }
+        .image img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+        .image:hover img {
+            transform: scale(1.1);
+        }
+        .image .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .image:hover .caption {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>커뮤니티 사이트</h2>
+        
+        <div class="tab">
+            <button class="tablinks active" onclick="openTab(event, 'normal')">일반 게시판</button>
+            <button class="tablinks" onclick="openTab(event, 'gallery')">이미지 갤러리</button>
+            <button class="tablinks" onclick="openTab(event, 'qna')">Q&A 게시판</button>
+        </div>
+        
+        <div id="normal" class="content active">
+            <div class="post">
+                <h3>첫 번째 게시물 제목</h3>
+                <p>첫 번째 게시물 내용입니다. 여기에는 글의 요약이 들어갈 수 있습니다.</p>
+                <p class="meta">작성자: 사용자1 | 작성일: 2024-07-05</p>
+            </div>
+            <div class="post">
+                <h3>두 번째 게시물 제목</h3>
+                <p>두 번째 게시물 내용입니다. 좋은 아이디어를 공유해보세요!</p>
+                <p class="meta">작성자: 사용자2 | 작성일: 2024-07-04</p>
+            </div>
+            <div class="post">
+                <h3>세 번째 게시물 제목</h3>
+                <p>세 번째 게시물 내용입니다. 댓글을 달아주세요.</p>
+                <p class="meta">작성자: 사용자3 | 작성일: 2024-07-03</p>
+            </div>
+        </div>
+
+        <div id="gallery" class="content">
+            <div class="gallery">
+                <div class="image">
+                    <img src="image1.jpg" alt="이미지1">
+                    <div class="caption">이미지 설명1</div>
+                </div>
+                <div class="image">
+                    <img src="image2.jpg" alt="이미지2">
+                    <div class="caption">이미지 설명2</div>
+                </div>
+                <div class="image">
+                    <img src="image3.jpg" alt="이미지3">
+                    <div class="caption">이미지 설명3</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="qna" class="content">
+            <div class="question">
+                <h3>질문 제목 1</h3>
+                <p>질문 내용을 여기에 작성하세요. 가능한 구체적으로 설명해주세요.</p>
+                <p class="meta">작성자: 사용자A | 작성일: 2024-07-05</p>
+            </div>
+            <div class="question">
+                <h3>질문 제목 2</h3>
+                <p>질문 내용을 여기에 작성하세요. 질문에 관련된 자세한 정보를 제공해주세요.</p>
+                <p class="meta">작성자: 사용자B | 작성일: 2024-07-04</p>
+            </div>
+            <div class="question">
+                <h3>질문 제목 3</h3>
+                <p>질문 내용을 여기에 작성하세요. 질문에 대한 예상 해결 방법이나 기대되는 답변을 기술해주세요.</p>
+                <p class="meta">작성자: 사용자C | 작성일: 2024-07-03</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        // Default open tab
+        document.getElementById("normal").style.display = "block";
+        document.getElementsByClassName("tablinks")[0].classList.add("active");
+    </script>
+</body>
+</html>
