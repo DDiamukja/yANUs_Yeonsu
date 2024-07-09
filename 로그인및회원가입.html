@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 및 로그인</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            max-width: 400px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .toggle-btn {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .toggle-btn button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #007bff;
+            text-decoration: underline;
+        }
+        .toggle-btn button:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container" id="formContainer">
+        <div id="signupForm">
+            <h2>회원가입</h2>
+            <form action="signup_process.php" method="post">
+                <div class="form-group">
+                    <label for="username">사용자 이름</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">가입하기</button>
+            </form>
+            <div class="toggle-btn">
+                <button onclick="toggleForm('login')">로그인하기</button>
+            </div>
+        </div>
+        
+        <div id="loginForm" style="display:none;">
+            <h2>로그인</h2>
+            <form action="login_process.php" method="post">
+                <div class="form-group">
+                    <label for="loginUsername">사용자 이름</label>
+                    <input type="text" id="loginUsername" name="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">비밀번호</label>
+                    <input type="password" id="loginPassword" name="loginPassword" required>
+                </div>
+                <button type="submit">로그인</button>
+            </form>
+            <div class="toggle-btn">
+                <button onclick="toggleForm('signup')">회원가입하기</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function toggleForm(formType) {
+            var signupForm = document.getElementById('signupForm');
+            var loginForm = document.getElementById('loginForm');
+
+            if (formType === 'signup') {
+                signupForm.style.display = 'block';
+                loginForm.style.display = 'none';
+            } else if (formType === 'login') {
+                signupForm.style.display = 'none';
+                loginForm.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
